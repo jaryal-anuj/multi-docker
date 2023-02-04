@@ -21,3 +21,15 @@ after_success:
   - docker push anujjaryal/multi-nginx
   - docker push anujjaryal/multi-server
   - docker push anujjaryal/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker-fib
+  env: Multidockerfib-env
+  bucket_name: elasticbeanstalk-us-east-1-139328299850
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
